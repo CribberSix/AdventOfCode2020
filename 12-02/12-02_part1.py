@@ -1,5 +1,5 @@
 # get input
-with open("input_part1.txt", "r") as f:
+with open("input.txt", "r") as f:
     input = list(f)
 input_cleaned = [x[:-1] for x in input]
 
