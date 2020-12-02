@@ -31,6 +31,7 @@ def count_occurences(char, longstring):
             i += 1
     return i
 
+
 valid_pws = 0
 for d in input_parsed:
     if is_valid(d):
