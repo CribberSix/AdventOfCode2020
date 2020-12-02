@@ -32,4 +32,4 @@ foreach (string outer in lines)
     }
 }
  
-Console.WriteLine("Finished.")
+Console.WriteLine("Finished.");
