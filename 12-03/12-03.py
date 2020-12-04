@@ -17,7 +17,8 @@ def check_slope(right, down):
 
         index_x += right
         index_y += down
-        try:  # check if we need to extend the map for the next step downwards
+        # check if we need to extend the map for the next step downwards
+        try:  
             row[index_x]
         except IndexError:
             print("Add new columns")

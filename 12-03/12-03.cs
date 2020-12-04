@@ -30,15 +30,14 @@ public long check_slope(int right, int down, string[] lines){
             tree_counter ++;
         }
 
-        // prep for the next step
+        // prep for the next step and reset index_x if necessary.
         index_x += right;
         index_y += down;
         if (index_x >= lines[0].Length){
-            index_x = index_x - lines[0].Length;
+            index_x -= lines[0].Length;
         }
     }
-    
-    Console.WriteLine("On the slope with {0} right and {1} down, there were {2} trees.",  Convert.ToString(right), Convert.ToString(down), Convert.ToString(tree_counter));
+    Console.WriteLine("On the slope with {0} right and {1} down, there were {2} trees.", right, down, tree_counter);
     return tree_counter;
 
 }
