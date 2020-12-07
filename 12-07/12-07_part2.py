@@ -1,9 +1,9 @@
-import re, sys
+import re
 
 # get input
 with open("input.txt", "r") as f:
     input = list(f)
-input = [x[:-1] for x in input]
+input = [x[:-1] for x in input]  # remove linebreak char at the end
 
 # parse input
 list_of_bags = []
@@ -14,26 +14,19 @@ for line in input:
     if t[1] == ' no other bags.':
         continue
 
-    temp = []
+    temp = []  # temp list for sub bags
     for x in contains:
         m = re.search(r"(\d) ([a-z]* [a-z]*)", x)
         number = m.group(1)
         color = m.group(2).strip(" ")
-        temp.append( (color, number))
+        temp.append((color, number))
 
     list_of_bags.append((bag, temp))
-
-current = []
-for x in list_of_bags:  # ('light red', [('bright white', '1'), ('muted yellow', '2')])
-    if x[0] == 'shiny gold':
-        for entry in x[1]:  # ('vibrant plum', '2')
-            for _ in range(int(entry[1])):
-                current.append(entry[0])
-
 
 # für jede Tasche aus bags_to_buy muss ich alle subtaschen (mit Anzahl) hinzufügen.
 # Für jede Subtasche schaue ich iterativ nach welche subtaschen diese hat, und füge sie hinzu.
 bags_to_buy = []
+current = ['shiny gold']  # we start with our shiny gold bag.
 for i in range(1000):
     c = 0
     newly_added = []
@@ -51,4 +44,4 @@ for i in range(1000):
         break  # break early
 
 print("bags_to_buy: " + str(bags_to_buy))
-print(f"We need to buy {len(bags_to_buy)} bags.")
+print(f"We need to buy {len(bags_to_buy) - 1} bags.")   # we subtract our shiny gold bag as we only want to find subs.
