@@ -33,7 +33,6 @@ for i, x in enumerate(input):
         mylist.append(y)
         if summe == invalid_num:
             print("Found the first continuous list of numbers that add to the invalid_num.")
-            print(mylist)
             end = True
             break
         elif summe > invalid_num:
@@ -41,12 +40,4 @@ for i, x in enumerate(input):
     if end:
         break
 
-smallest = 100000000000000
-largest = -1
-for x in mylist:
-    if x > largest:
-        largest = x
-    if x < smallest:
-        smallest = x
-
-print(f"The smallest plus largest number is {smallest + largest}.")
+print(f"The smallest plus largest number is {min(mylist) + max(mylist)}.")
