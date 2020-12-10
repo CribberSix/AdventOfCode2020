@@ -1,4 +1,5 @@
 from anytree import Node, RenderTree
+from anytree.exporter import DotExporter
 
 
 # handy function
@@ -13,22 +14,26 @@ numbers.append(0)
 numbers.sort()
 
 print(numbers)
-root_node = Node(0)
 
-for x in numbers:
+root_node = Node(0)
+for i, x in enumerate(numbers):
     x_node = find_node(root_node, x)
 
-    if x_node is None:
-        # connect to all others possible, meaning:
-
+    if x_node is None:  # node exists in the path
         # connect to x - 1
         x_minus1 = find_node(root_node, x-1)
         if x_minus1 is not None:
-            Node(x, parent = x_minus1)
+            Node(x, parent=x_minus1)
 
         # connect to x - 2
+        x_minus2 = find_node(root_node, x-2)
+        if x_minus2 is not None:
+            Node(x, parent=x_minus2)
 
         # connect to x - 3
+        x_minus3 = find_node(root_node, x-3)
+        if x_minus3 is not None:
+            Node(x, parent=x_minus3)
 
 
 # print tree
