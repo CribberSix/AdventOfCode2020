@@ -1,3 +1,4 @@
+import sys
 movements = [(s[0], int(s[1:-1])) for s in open('input.txt').readlines()]
 
 waypoint_x_axis = 10
@@ -26,22 +27,25 @@ def rotate_right():
     x = waypoint_x_axis
     y = waypoint_y_axis
     print("Right: ", waypoint_x_axis, waypoint_y_axis)
-    if x > 0 and y > 0:  # 1. Quadrant -> 2. Quadrant
+    if x >= 0 and y >= 0:  # 1. Quadrant -> 2. Quadrant
         print("Rotate 1-2")
         waypoint_x_axis = y
         waypoint_y_axis = -x
-    elif x > 0 and y < 0:  # 2. Quadrant -> 3. Quadrant
+    elif x >= 0 and y <= 0:  # 2. Quadrant -> 3. Quadrant
         print("Rotate 2-3")
         waypoint_x_axis = y
         waypoint_y_axis = - x
-    elif x < 0 and y < 0:  # 3.Quadrant -> 4. Quadrant
+    elif x <= 0 and y <= 0:  # 3.Quadrant -> 4. Quadrant
         print("Rotate 3-4")
         waypoint_x_axis = y
         waypoint_y_axis = abs(x)
-    elif x < 0 and y > 0:  # 4. Quadrant -> 1. Quadrant
+    elif x <= 0 and y >= 0:  # 4. Quadrant -> 1. Quadrant
         print("Rotate 4-1")
         waypoint_x_axis = y
         waypoint_y_axis = abs(x)
+    else:
+        print("Final: ", x, y)
+        raise ValueError("This fucked me before because x or y was 0. Goddamn it. ")
     print("Rotated to: ", waypoint_x_axis, waypoint_y_axis)
 
 
@@ -52,22 +56,25 @@ def rotate_left():
     y = waypoint_y_axis
     print("Left: ", waypoint_x_axis, waypoint_y_axis)
 
-    if x > 0 and y > 0:  # 1. Quadrant -> 4. Quadrant
+    if x >= 0 and y >= 0:  # 1. Quadrant -> 4. Quadrant
         print("Rotate 1-4")
         waypoint_x_axis = -y
         waypoint_y_axis = x
-    elif x < 0 and y > 0:  # 4. Quadrant -> 3. Quadrant
+    elif x <= 0 and y >= 0:  # 4. Quadrant -> 3. Quadrant
         print("Rotate 4-3")
         waypoint_x_axis = -y
         waypoint_y_axis = x
-    elif x < 0 and y < 0:  # 3.Quadrant -> 2. Quadrant
+    elif x <= 0 and y <= 0:  # 3.Quadrant -> 2. Quadrant
         print("Rotate 3-2")
         waypoint_x_axis = abs(y)
         waypoint_y_axis = x
-    elif x > 0 and y < 0:  # 2. Quadrant -> 1. Quadrant
+    elif x >= 0 and y <= 0:  # 2. Quadrant -> 1. Quadrant
         print("Rotate 2-1")
         waypoint_x_axis = abs(y)
         waypoint_y_axis = x
+    else:
+        print("Final: ", x, y)
+        raise ValueError("This fucked me before because x or y was 0. Goddamn it. ")
     print("Rotated to: ", waypoint_x_axis, waypoint_y_axis)
 
 
