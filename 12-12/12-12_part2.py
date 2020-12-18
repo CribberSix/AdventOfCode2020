@@ -1,12 +1,9 @@
-
-
 movements = [(s[0], int(s[1:-1])) for s in open('input.txt').readlines()]
 
 waypoint_x_axis = 10
 waypoint_y_axis = 1
 ship_x_axis = 0
 ship_y_axis = 0
-facing = 1
 
 compass = ['N', 'E', 'S', 'W']
 
@@ -28,7 +25,7 @@ def rotate_right():
 
     x = waypoint_x_axis
     y = waypoint_y_axis
-    print("Right: " , waypoint_x_axis, waypoint_y_axis)
+    print("Right: ", waypoint_x_axis, waypoint_y_axis)
     if x > 0 and y > 0:  # 1. Quadrant -> 2. Quadrant
         print("Rotate 1-2")
         waypoint_x_axis = y
@@ -45,7 +42,7 @@ def rotate_right():
         print("Rotate 4-1")
         waypoint_x_axis = y
         waypoint_y_axis = abs(x)
-    print(waypoint_x_axis, waypoint_y_axis)
+    print("Rotated to: ", waypoint_x_axis, waypoint_y_axis)
 
 
 def rotate_left():
@@ -53,7 +50,7 @@ def rotate_left():
 
     x = waypoint_x_axis
     y = waypoint_y_axis
-    print(waypoint_x_axis, waypoint_y_axis)
+    print("Left: ", waypoint_x_axis, waypoint_y_axis)
 
     if x > 0 and y > 0:  # 1. Quadrant -> 4. Quadrant
         print("Rotate 1-4")
@@ -71,7 +68,7 @@ def rotate_left():
         print("Rotate 2-1")
         waypoint_x_axis = abs(y)
         waypoint_y_axis = x
-    print(waypoint_x_axis, waypoint_y_axis)
+    print("Rotated to: ", waypoint_x_axis, waypoint_y_axis)
 
 
 def move_ship(steps):
@@ -96,6 +93,7 @@ for move in movements:
         for x in range(times):
             rotate_left()
 
+print(f"Final axis is {ship_x_axis}, {ship_y_axis}")
 manhatten_distance = abs(ship_x_axis) + abs(ship_y_axis)
 print(f"The manhatten distance is {manhatten_distance}.")
 
