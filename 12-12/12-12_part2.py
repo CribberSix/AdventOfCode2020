@@ -118,5 +118,3 @@ for move in movements:
 print(f"Final axis is {ship_x_axis}, {ship_y_axis}")
 manhatten_distance = abs(ship_x_axis) + abs(ship_y_axis)
 print(f"The manhatten distance is {manhatten_distance}.")
-
-# The manhatten distance is 42013.
