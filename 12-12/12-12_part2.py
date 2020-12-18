@@ -45,7 +45,7 @@ def rotate_right():
         waypoint_y_axis = abs(x)
     else:
         print("Final: ", x, y)
-        raise ValueError("This fucked me before because x or y was 0. Goddamn it. ")
+        raise ValueError("This should not be possible anymore.")
     print("Rotated to: ", waypoint_x_axis, waypoint_y_axis)
 
 
@@ -74,7 +74,7 @@ def rotate_left():
         waypoint_y_axis = x
     else:
         print("Final: ", x, y)
-        raise ValueError("This fucked me before because x or y was 0. Goddamn it. ")
+        raise ValueError("This should not be possible anymore.")
     print("Rotated to: ", waypoint_x_axis, waypoint_y_axis)
 
 
