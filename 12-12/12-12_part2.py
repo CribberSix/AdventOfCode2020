@@ -1,4 +1,3 @@
-import sys
 movements = [(s[0], int(s[1:-1])) for s in open('input.txt').readlines()]
 
 waypoint_x_axis = 10
@@ -21,7 +20,7 @@ def move_waypoint(direction, steps):
         waypoint_x_axis -= steps
 
 
-def rotate_right():
+def rotate_right_old():
     global waypoint_x_axis, waypoint_y_axis
 
     x = waypoint_x_axis
@@ -49,7 +48,7 @@ def rotate_right():
     print("Rotated to: ", waypoint_x_axis, waypoint_y_axis)
 
 
-def rotate_left():
+def rotate_left_old():
     global waypoint_x_axis, waypoint_y_axis
 
     x = waypoint_x_axis
@@ -78,6 +77,22 @@ def rotate_left():
     print("Rotated to: ", waypoint_x_axis, waypoint_y_axis)
 
 
+def rotate_left():
+    global waypoint_x_axis, waypoint_y_axis
+    x = waypoint_x_axis
+    y = waypoint_y_axis
+    waypoint_x_axis = -1 * y
+    waypoint_y_axis = x
+
+
+def rotate_right():
+    global waypoint_x_axis, waypoint_y_axis
+    x = waypoint_x_axis
+    y = waypoint_y_axis
+    waypoint_x_axis = y
+    waypoint_y_axis = -1 * x
+
+
 def move_ship(steps):
     global ship_x_axis, ship_y_axis, waypoint_x_axis, waypoint_y_axis
     ship_x_axis += (steps * waypoint_x_axis)
@@ -104,3 +119,4 @@ print(f"Final axis is {ship_x_axis}, {ship_y_axis}")
 manhatten_distance = abs(ship_x_axis) + abs(ship_y_axis)
 print(f"The manhatten distance is {manhatten_distance}.")
 
+# The manhatten distance is 42013.
