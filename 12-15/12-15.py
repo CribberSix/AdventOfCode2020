@@ -1,8 +1,3 @@
-def get_turn_of_last_spoken(num):
-    global input
-    return input[num]
-
-
 def update_x_with(x, current_turn):
     global numbers
     try:
