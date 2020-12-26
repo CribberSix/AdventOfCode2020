@@ -8,21 +8,13 @@ tickets_active = False
 valid_numbers = []  # part 1
 invalid_numbers = []  # part 1
 valid_tickets = []  # part 2
+rules = []  # part 2
 
-rules = []
+
+# Parse the rules and tickets to figure out which numbers (part1) / tickets (part2) are invalid / valid.
 for i, line in enumerate(input):
-    if tickets_active:  # check for valid tickets
-        ticket = [int(x) for x in line.split(",")]
-        valid_t = True
-        for num in ticket:  # check every number on the ticket for validity
-            if num not in valid_numbers:
-                invalid_numbers.append(num)  # part 1
-                valid_t = False  # part 2
-        if valid_t:
-            valid_tickets.append(ticket)
 
-    if i < number_of_rules:
-        # Get valid numbers for the rule
+    if i < number_of_rules: # Parse the rules
         m = re.findall(r"((\d+)-(\d+))", line)
         rule_numbers = []
         for triple in m:
@@ -30,13 +22,22 @@ for i, line in enumerate(input):
                 valid_numbers.append(x)  # part 1
                 rule_numbers.append(x)  # part 2
 
-        # get name of the rule
-        rule_name = re.search(r"^(\w+ ?\w*)", line)
-        # print(test.group(1), temp)
-        rules.append((rule_name.group(1), rule_numbers))
+        rule_name = line.split(":")[0]
+        rules.append((rule_name, rule_numbers))
 
-    if line == 'nearby tickets:':
-        tickets_active = True
+    elif tickets_active:  # check for valid tickets
+        ticket = [int(x) for x in line.split(",")]
+        ticket_is_valid = True
+        for num in ticket:  # check every number on the ticket for validity
+            if num not in valid_numbers:
+                invalid_numbers.append(num)  # part 1
+                ticket_is_valid = False  # part 2
+        if ticket_is_valid:
+            valid_tickets.append(ticket)
+
+    elif line == 'nearby tickets:':
+        tickets_active = True  # all following are tickets now.
+
     elif line == 'your ticket:':
         my_ticket = [int(x) for x in input[i+1].split(",")]
 
@@ -55,8 +56,8 @@ while len(result) < number_of_rules:
                     current_rules.remove(r)
 
         if len(current_rules) == 1:
-            # if we have only 1 possible rule left, it must be it - otherwise, start over again.
-            # print(f"Field {index} ist {current_rules[0][0]}.")
+            # if we have only 1 possible rule left, it must be it.
+            print(f"Field {index} ist {current_rules[0][0]}.")
             result.append((current_rules[0][0], index))
             rules.remove(current_rules[0])
 
